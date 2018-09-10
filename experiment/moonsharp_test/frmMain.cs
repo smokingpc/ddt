@@ -19,5 +19,48 @@ namespace moonsharp_test
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string script_text = @"
+                    -- LUA的註解是這符號
+                    -- n=10
+                    -- n = n * 5
+                    -- return (n)
+
+                    my_data = true
+                    return (my_data)
+                    ";
+
+            Script script = new Script();
+            var result = script.DoString(script_text);
+
+            //var data = Convert.ToInt32(result.Number);
+            MessageBox.Show("LUA script execution result = " + result.Boolean.ToString());
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Script script = new Script();
+            var result = script.DoString(textBox1.Text);
+
+            var data = Convert.ToInt32(result.Number);
+            MessageBox.Show("LUA script execution result = " + data.ToString());
+        }
+
+        private void InitUI()
+        {
+            textBox1.Text =
+@"
+    data = 1234
+    data = data + 7
+    return data
+";
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            InitUI();
+        }
     }
 }
