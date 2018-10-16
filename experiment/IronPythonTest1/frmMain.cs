@@ -27,6 +27,7 @@ namespace IronPythonTest1
             //enjoy it!
             var engine = IronPython.Hosting.Python.CreateEngine();
 
+//因為python對縮排要求很嚴格，所以寫成這附鳥樣
             string script = 
 @"
 print ""Hello World""
