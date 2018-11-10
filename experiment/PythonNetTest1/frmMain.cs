@@ -36,8 +36,8 @@ namespace PythonNetTest1
         {
             
             //指定以後再init就會變更預設lib路徑，看來是Lazy Init
-            string home = PythonEngine.PythonHome;
-            string path = PythonEngine.PythonPath;
+            //string home = PythonEngine.PythonHome;
+            //string path = PythonEngine.PythonPath;
             
             //MessageBox.Show(home);
             //Python執行前要啟動python engine...
@@ -52,7 +52,10 @@ namespace PythonNetTest1
 
             //這邊function名稱要照python內宣告的名稱， case sensitive
             var py_result = module.Calculate(data1, data2);
-            
+
+            string path = string.Format("{0}\\{1}.txt", ExePath, DateTime.Now.ToString("yyyyMMdd_HHmmss"));
+            module.TestFunction(path, Guid.NewGuid().ToString());
+
             PythonEngine.ReleaseLock(lock_handle);
             PythonEngine.Shutdown();    //結束 python engine
 
